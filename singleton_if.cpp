@@ -9,7 +9,6 @@ std::unique_ptr<SingletonInterface> instance::current = nullptr;
 
 SingletonInterface::~SingletonInterface() {
   std::cout << "Interface D-ctor\n";
-  //instance::current.release();
 }
 
 SingletonInterface& get_instance() {
@@ -26,7 +25,6 @@ SingletonInterface& get_instance() {
 }
 
 void set_instance(std::unique_ptr<SingletonInterface> new_instance) {
-  instance::current.release();
   instance::current = std::move(new_instance);
 }
 }
