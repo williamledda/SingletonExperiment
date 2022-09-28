@@ -10,6 +10,6 @@ namespace instance {
   extern SingletonInterface* current;
 }
 
-SingletonInterface* get_instance();
+SingletonInterface& get_instance();
 void set_instance(SingletonInterface* new_instance);
 }

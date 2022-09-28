@@ -5,7 +5,7 @@ namespace singleton {
 
 SingletonInterface* instance::current = nullptr;
 
-SingletonInterface* get_instance() {
+SingletonInterface& get_instance() {
   static bool init = []() -> bool{
     if(instance::current == nullptr) {
       static SingletonImpl impl;
@@ -14,8 +14,9 @@ SingletonInterface* get_instance() {
     return true;
   }();
 
-  return instance::current;
+  return *instance::current;
 }
+
 void set_instance(SingletonInterface* new_instance) {
   instance::current = new_instance;
 }

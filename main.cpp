@@ -3,5 +3,5 @@
 
 int main() {
   std::cout << "Hello World!\n";
-  singleton::get_instance()->do_something();
+  singleton::get_instance().do_something();
 }
