@@ -12,10 +12,11 @@ SingletonInterface::~SingletonInterface() {
 }
 
 SingletonInterface& get_instance() {
-  static bool init = []() -> bool{
+  bool init = []() -> bool{
     if(instance::current == nullptr) {
       // static SingletonImpl impl;
       // instance::current.reset(&impl);
+      std::cout << "Creating the Singleton for the first time!!!\n\n";
       instance::current = std::make_unique<SingletonImpl>();
     }
     return true;

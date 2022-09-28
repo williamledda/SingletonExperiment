@@ -17,5 +17,11 @@ int main() {
   a_client.use_singleton();
   singleton::get_instance().do_something();
 
-    std::cout << "\nDone!\n";  
+  // std::cout << "\nTrying to reset to nullptr...\n";
+  // singleton::set_instance(nullptr);
+  a_client.use_singleton();
+  singleton::get_instance().do_something();
+
+  std::cout << "\nDone!\n";  
+
 }

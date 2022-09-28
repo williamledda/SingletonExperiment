@@ -16,6 +16,7 @@ SingletonInterface& get_instance() {
     if(instance::current == nullptr) {
       // static SingletonImpl impl;
       // instance::current.reset(&impl);
+      std::cout << "Creating the Singleton for the first time!!!\n\n";
       instance::current = std::make_unique<SingletonImpl>();
     }
     return true;

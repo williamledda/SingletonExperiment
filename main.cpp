@@ -16,6 +16,6 @@ int main() {
 
   a_client.use_singleton();
   singleton::get_instance().do_something();
-
-    std::cout << "\nDone!\n";  
+  
+  std::cout << "\nDone!\n";  
 }
