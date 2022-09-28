@@ -1,20 +1,20 @@
 #pragma once 
 
-//#include <memory>
+#include <memory>
 
 namespace singleton {
 class SingletonInterface {
 public:
-  virtual ~SingletonInterface();
+  virtual ~SingletonInterface() = default;
   virtual void do_something() = 0;
 };
 
 namespace instance {
-  //extern std::unique_ptr<SingletonInterface> current;
-  extern SingletonInterface* current;
+  extern std::unique_ptr<SingletonInterface> current;
+  // extern SingletonInterface* current;
 }
 
 SingletonInterface& get_instance();
-//void set_instance(std::unique_ptr<SingletonInterface> new_instance);
-void set_instance(SingletonInterface* new_instance);
+void set_instance(std::unique_ptr<SingletonInterface> new_instance);
+// void set_instance(SingletonInterface* new_instance);
 }

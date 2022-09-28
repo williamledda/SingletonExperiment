@@ -1,0 +1,39 @@
+==2982== Memcheck, a memory error detector
+==2982== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==2982== Using Valgrind-3.16.1 and LibVEX; rerun with -h for copyright info
+==2982== Command: ./main
+==2982== 
+Creating the Singleton for the first time!!!
+
+Default C-tor
+Some dummy stuff
+A client is using the singleton... Some dummy stuff
+
+Switching impl...
+New Impl C-ctor
+Default D-tor
+A client is using the singleton... Number: 30
+Number: 30
+
+Done!
+New Impl D-ctor
+Deleting my int...
+==2982== 
+==2982== HEAP SUMMARY:
+==2982==     in use at exit: 72,704 bytes in 1 blocks
+==2982==   total heap usage: 5 allocs, 4 frees, 76,828 bytes allocated
+==2982== 
+==2982== 72,704 bytes in 1 blocks are still reachable in loss record 1 of 1
+==2982==    at 0x483E751: malloc (in /nix/store/7p3q3hn63ya4c46swsxlbmy03sbxz3d9-valgrind-3.16.1/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2982==    by 0x405E95: _GLOBAL__sub_I_eh_alloc.cc (in /home/runner/SingletonExperiment/main)
+==2982==    by 0x498414: __libc_csu_init (in /home/runner/SingletonExperiment/main)
+==2982==    by 0x49CE70E: (below main) (in /nix/store/9bh3986bpragfjmr32gay8p95k91q4gy-glibc-2.33-47/lib/libc-2.33.so)
+==2982== 
+==2982== LEAK SUMMARY:
+==2982==    definitely lost: 0 bytes in 0 blocks
+==2982==    indirectly lost: 0 bytes in 0 blocks
+==2982==      possibly lost: 0 bytes in 0 blocks
+==2982==    still reachable: 72,704 bytes in 1 blocks
+==2982==         suppressed: 0 bytes in 0 blocks
+==2982== 
+==2982== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
