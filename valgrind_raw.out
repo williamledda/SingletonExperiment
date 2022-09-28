@@ -1,0 +1,49 @@
+==2273== Memcheck, a memory error detector
+==2273== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==2273== Using Valgrind-3.16.1 and LibVEX; rerun with -h for copyright info
+==2273== Command: ./main
+==2273== 
+Creating the Singleton for the first time!!!
+
+Default C-tor
+Some dummy stuff
+A client is using the singleton... Some dummy stuff
+
+Switching impl...
+New Impl C-ctor
+A client is using the singleton... Number: 20
+Number: 20
+
+Done!
+Default D-tor
+Interface D-ctor
+==2273== 
+==2273== HEAP SUMMARY:
+==2273==     in use at exit: 72,724 bytes in 3 blocks
+==2273==   total heap usage: 4 allocs, 1 frees, 76,820 bytes allocated
+==2273== 
+==2273== 4 bytes in 1 blocks are still reachable in loss record 1 of 3
+==2273==    at 0x483EDA9: operator new(unsigned long) (in /nix/store/7p3q3hn63ya4c46swsxlbmy03sbxz3d9-valgrind-3.16.1/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2273==    by 0x406243: make_unique<singleton::MyInt, int &> (unique_ptr.h:962)
+==2273==    by 0x406243: singleton::NewImpl::NewImpl(int) (new_impl.cpp:6)
+==2273==    by 0x40674E: main (main.cpp:16)
+==2273== 
+==2273== 16 bytes in 1 blocks are still reachable in loss record 2 of 3
+==2273==    at 0x483EDA9: operator new(unsigned long) (in /nix/store/7p3q3hn63ya4c46swsxlbmy03sbxz3d9-valgrind-3.16.1/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2273==    by 0x40673E: main (main.cpp:16)
+==2273== 
+==2273== 72,704 bytes in 1 blocks are still reachable in loss record 3 of 3
+==2273==    at 0x483E751: malloc (in /nix/store/7p3q3hn63ya4c46swsxlbmy03sbxz3d9-valgrind-3.16.1/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2273==    by 0x405E75: _GLOBAL__sub_I_eh_alloc.cc (in /home/runner/SingletonExperiment/main)
+==2273==    by 0x4984C4: __libc_csu_init (in /home/runner/SingletonExperiment/main)
+==2273==    by 0x49CE70E: (below main) (in /nix/store/9bh3986bpragfjmr32gay8p95k91q4gy-glibc-2.33-47/lib/libc-2.33.so)
+==2273== 
+==2273== LEAK SUMMARY:
+==2273==    definitely lost: 0 bytes in 0 blocks
+==2273==    indirectly lost: 0 bytes in 0 blocks
+==2273==      possibly lost: 0 bytes in 0 blocks
+==2273==    still reachable: 72,724 bytes in 3 blocks
+==2273==         suppressed: 0 bytes in 0 blocks
+==2273== 
+==2273== For lists of detected and suppressed errors, rerun with: -s
+==2273== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
