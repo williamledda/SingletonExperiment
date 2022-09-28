@@ -1,15 +1,23 @@
 #include "singleton_if.h"
 #include "singleton_impl.h"
 
+#include <iostream>
+
 namespace singleton {
 
-SingletonInterface* instance::current = nullptr;
+std::unique_ptr<SingletonInterface> instance::current = nullptr;
+
+SingletonInterface::~SingletonInterface() {
+  std::cout << "Interface D-ctor\n";
+  //instance::current.release();
+}
 
 SingletonInterface& get_instance() {
   static bool init = []() -> bool{
     if(instance::current == nullptr) {
-      static SingletonImpl impl;
-      instance::current = &impl;
+      // static SingletonImpl impl;
+      // instance::current.reset(&impl);
+      instance::current = std::make_unique<SingletonImpl>();
     }
     return true;
   }();
@@ -17,7 +25,8 @@ SingletonInterface& get_instance() {
   return *instance::current;
 }
 
-void set_instance(SingletonInterface* new_instance) {
-  instance::current = new_instance;
+void set_instance(std::unique_ptr<SingletonInterface> new_instance) {
+  instance::current.release();
+  instance::current = std::move(new_instance);
 }
 }
