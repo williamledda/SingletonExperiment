@@ -21,10 +21,12 @@ NewImpl::NewImpl(const NewImpl& oth) {
 
 NewImpl& NewImpl::operator=(NewImpl&& oth) {
   std::cout << "New Impl move operator=\n";
+  return *this;
 }
 
 NewImpl& NewImpl::operator=(const NewImpl& oth) {
   std::cout << "New Impl operator=\n";
+  return *this;
 }
   
 void NewImpl::do_something(){ 
